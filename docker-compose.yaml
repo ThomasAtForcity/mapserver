@@ -7,3 +7,14 @@ services:
     - 80:80
     volumes:
      - ./mapfiles/tutorial/:/etc/mapserver/
+    environment:
+      MS_DEBUGLEVEL: 5
+      # MS_ERRORFILE: postgres
+  db:
+    container_name: urban-eco-db
+    image: mdillon/postgis
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres

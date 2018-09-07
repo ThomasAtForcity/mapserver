@@ -1,0 +1,47 @@
+# POC with landSupplyOffers GEOMETRIES
+MAP
+  IMAGETYPE      PNG
+  STATUS ON
+  EXTENT -180 -90 180 90
+  UNITS DD
+  SIZE           256 256
+  IMAGECOLOR     255 255 255
+	CONFIG "MS_ERRORFILE" "stderr"
+  DEBUG 5
+
+	WEB
+		METADATA
+      "wms_title" "WMS Server"
+      "wms_srs" "epsg:3857"
+      "wms_enable_request" "*"
+      "wms_onlineresource" ""
+    END
+  END
+
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  LAYER
+    NAME         states
+    STATUS       OFF
+    TYPE         POLYGON
+
+    # PG CONNECTION
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "host=urban-eco-db dbname=urban_eco user=postgres password=postgres port=5432"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    DATA "geometry FROM \"landSupplyOffers\" USING UNIQUE id USING srid=4326"
+
+    PROJECTION
+      "init=epsg:4326"
+    END
+
+    CLASS
+      STYLE
+        OUTLINEWIDTH 1
+        OUTLINECOLOR 255 0 0
+      END
+    END
+  END
+END
