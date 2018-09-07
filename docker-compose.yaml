@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  mapserver:
+    image: camptocamp/mapserver:7.2
+    container_name: mapserver
+    ports: 
+    - 80:80
+    volumes:
+     - ./mapfiles/tutorial/example1.map:/etc/mapserver/mapserver.map
+     - ./mapfiles/tutorial/data/:/tutorial/data
