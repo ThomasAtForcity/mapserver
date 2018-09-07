@@ -6,5 +6,4 @@ services:
     ports: 
     - 80:80
     volumes:
-     - ./mapfiles/tutorial/example1.map:/etc/mapserver/mapserver.map
-     - ./mapfiles/tutorial/data/:/tutorial/data
+     - ./mapfiles/tutorial/:/etc/mapserver/

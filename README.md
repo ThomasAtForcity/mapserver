@@ -8,6 +8,10 @@
 ```bash
 docker-compose up
 ```
+Open brower :
+ - http://localhost/cgi-bin/mapserv?map=/etc/mapserver/example1-1.map&layer=states&mode=map
+ - http://localhost/cgi-bin/mapserv?map=/etc/mapserver/example1-2.map&layer=states_line&layer=states_poly&mode=map
+ - http://localhost/cgi-bin/mapserv?map=/etc/mapserver/example1-3.map&layer=states_line&layer=states_poly&mode=map
+ - http://localhost/cgi-bin/mapserv?map=/etc/mapserver/example1-4.map&layer=states_line&layer=states_poly&mode=map
 
-Open brower on http://localhost/cgi-bin/mapserv?map=/etc/mapserver/mapserver.map&layer=states&mode=map
-You should see a map from tutoriel example1.
+You should see the tutorial examples.

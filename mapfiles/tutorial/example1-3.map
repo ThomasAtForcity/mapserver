@@ -13,7 +13,7 @@ MAP
   IMAGETYPE      PNG
   EXTENT         -97.238976 41.619778 -82.122902 49.385620
   SIZE           400 300
-  SHAPEPATH      "/tutorial/data"
+  SHAPEPATH      "/etc/mapserver/data"
   IMAGECOLOR     255 255 255
 
   # Layer objects are defined beneath the map object.  You need at least one
@@ -25,28 +25,61 @@ MAP
 
   # Start of LAYER DEFINITIONS ---------------------------------------------
   LAYER # States polygon layer begins here
-    NAME         states
+    NAME         states_poly
     DATA         states_ugl
     STATUS       OFF
     TYPE         POLYGON
+
+    # CLASSITEM defines the non-spatial attribute that you will be using to
+    # separate a layer into classes.  This attribute will be in the DBF file
+    # of your shapefile (it will be different for each data format).  In this
+    # example the shapefile states_ugl has an associated database
+    # (states_ugl.dbf) that contains an attribute called "CLASS".  You will be
+    # using two values in the CLASS attribute to separate the classes (also
+    # called themes) used in this layer--land and water.  CLASSITEM is used in
+    # association with the EXPRESSION parameter in the CLASS object.  See below.
+    CLASSITEM    "CLASS"
 
     # The class object is defined within the layer object.  You can define as
     # many classes as you need (well, there are limits as with layers, but it's
     # senseless to define more than ten on a "normal" layer.  There are
     # situations, however, where you might have to do it.)
     CLASS
-      NAME       "The Upper Great Lakes States"
+      NAME 'States'
+      EXPRESSION 'land' # Only polygons where "CLASS" = 'land' will be drawn.
 
       # There are styles in a class, just like there are classes in a layer,
       # just like there are layers in a map.  You can define multiple styles in
       # a class just as you can define multiple classes in a layer and multiple
       # layers in a map.
       STYLE
-        COLOR        232 232 232
-        OUTLINECOLOR 32 32 32
+        COLOR      232 232 232
+      END
+    END
+    CLASS
+      NAME 'Water'
+      EXPRESSION 'water' # Only polygons where "CLASS" = 'water' will be drawn.
+      STYLE
+        COLOR      198 198 255
       END
     END
   END # States polygon layer ends here
+
+  LAYER # States line layer begins here
+    NAME         states_line
+    DATA         states_ugl
+    STATUS       OFF
+    TYPE         LINE
+
+    CLASSITEM    "CLASS"
+    CLASS
+      NAME       'State Boundary'
+      EXPRESSION 'land'
+      STYLE
+        COLOR    32 32 32
+      END
+    END
+  END # States line layer ends here
   # End of LAYER DEFINITIONS -------------------------------
 
 END # All map files must come to an end just as all other things must come to...
