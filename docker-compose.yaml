@@ -7,9 +7,13 @@ services:
     - 80:80
     volumes:
      - ./mapfiles/tutorial/:/etc/mapserver/
+     - ./scripts/env-config.sh:/docker-entrypoint.d/env-config.sh
     environment:
       MS_DEBUGLEVEL: 5
-      # MS_ERRORFILE: postgres
+      DB_PW: postgres
+      DB_USER: postgres
+      DB_NAME: urban_eco
+      DB_HOST: urban-eco-db
   db:
     container_name: urban-eco-db
     image: mdillon/postgis

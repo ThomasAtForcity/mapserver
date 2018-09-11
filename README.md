@@ -26,3 +26,7 @@ Open the [urban eco front project](https://github.com/forcityplatform/urban-eco-
 branch feature/MapServerPOC and open the ui.
 You should see in red yours land supply offers.
 ![](./printscreen.png?raw=true)
+
+## Test configured mapfile
+
+http://localhost/cgi-bin/mapserv?map=/etc/mapserver/mapfile.map&layer=states&mode=map
