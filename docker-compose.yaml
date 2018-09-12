@@ -10,10 +10,10 @@ services:
      - ./scripts/env-config.sh:/docker-entrypoint.d/env-config.sh
     environment:
       MS_DEBUGLEVEL: 5
-      DB_PW: postgres
-      DB_USER: postgres
-      DB_NAME: urban_eco
-      DB_HOST: urban-eco-db
+      URB_MS_DB_PW: postgres
+      URB_MS_DB_USER: postgres
+      URB_MS_DB_NAME: urban_eco
+      URB_MS_DB_HOST: urban-eco-db
   db:
     container_name: urban-eco-db
     image: mdillon/postgis

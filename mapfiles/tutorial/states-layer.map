@@ -1,0 +1,21 @@
+  LAYER
+    NAME         states
+    STATUS       OFF
+    TYPE         POLYGON
+
+    # PG CONNECTION
+    INCLUDE 'db-config.map'
+    DATA "geometry FROM \"landSupplyOffers\" USING UNIQUE id USING srid=4326"
+
+    PROJECTION
+      "init=epsg:4326"
+    END
+
+    CLASS
+      STYLE
+        OUTLINEWIDTH 100
+        OUTLINECOLOR 255 0 0
+        WIDTH 100
+      END
+    END
+  END
