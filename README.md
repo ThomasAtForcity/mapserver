@@ -30,3 +30,5 @@ You should see in red yours land supply offers.
 ## Test configured mapfile
 
 http://localhost/cgi-bin/mapserv?map=/etc/mapserver/mapfile.map&layer=states&mode=map
+
+ENJOY !! xD
