@@ -1,0 +1,89 @@
+MAP
+  NAME "WMS Server"
+  STATUS ON
+  SIZE 400 300
+  EXTENT -180 -90 180 90
+  UNITS DD
+  FONTSET "fonts.txt"
+  DEBUG OFF
+
+  WEB
+    METADATA
+      "wms_title" "WMS Server"
+      "wms_srs" "epsg:3857"
+      "wms_enable_request" "*"
+      "wms_onlineresource" ""
+    END
+  END
+
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  OUTPUTFORMAT
+    NAME "png"
+    DRIVER AGG/PNG
+    MIMETYPE "image/png"
+    IMAGEMODE RGBA
+    EXTENSION "png"
+  END
+
+  LEGEND
+    STATUS OFF
+    KEYSIZE 18 12
+    LABEL
+      FONT "arial"
+      TYPE TRUETYPE
+      ENCODING UTF-8
+      SIZE 8
+      COLOR 0 0 0
+    END
+  END
+
+  
+
+  LAYER
+    NAME "233f3b11717b40d484fe30d35ab3e914"
+    STATUS OFF # will be set by mapserver itself
+
+    METADATA
+      "wms_title"         ""
+      "wms_srs"           "epsg:3857"
+      "wms_abstract"      ""
+
+    END
+
+    TYPE POLYGON
+
+    VALIDATION
+      "date" "[0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}\:[0-9]{2}\:[0-9]{2}\+[0-9]{2}\:[0-9]{2}"
+      "validityStart" "[0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}\:[0-9]{2}\:[0-9]{2}\+[0-9]{2}\:[0-9]{2}"
+      "validityEnd" "[0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}\:[0-9]{2}\:[0-9]{2}\+[0-9]{2}\:[0-9]{2}"
+      "sourceKey" "^[-a-zA-Z0-9_]+\Z"
+      "objectID" "^[-a-zA-Z0-9_]+\Z"
+      "draw_all" "^[1]{1}$"
+      "default_draw_all" "0"
+    END
+
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "host=192.168.2.133 dbname=forcity_platform_cimkit_cache user=cgarancher password=idefix port=5432"
+
+    DATA "geometry FROM (SELECT *, 1 AS \"draw_all\" FROM \"tms_view_data\".\"3ee33de0-c9ef-4c49-8ea8-d394381137a5\" WHERE (geometry && !BOX!) AND (date=TIMESTAMP WITH TIME ZONE '%date%')) AS \"subquery\" USING UNIQUE uid USING srid=4326"
+
+    PROJECTION
+      "init=epsg:4326"
+    END
+
+
+        CLASS
+MAXSCALEDENOM 200000
+STYLE
+OUTLINEWIDTH 0.3
+OUTLINECOLOR 37 37 37
+END
+END
+
+
+  END
+
+END

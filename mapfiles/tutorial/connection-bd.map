@@ -1,0 +1,39 @@
+MAP
+  IMAGETYPE      PNG
+  STATUS ON
+  EXTENT -180 -90 180 90
+  UNITS DD
+  SIZE           256 256
+  IMAGECOLOR     255 255 255
+	CONFIG "MS_ERRORFILE" "stderr"
+  DEBUG 5
+
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  LAYER
+    NAME         states
+    STATUS       OFF
+    TYPE         POLYGON
+
+    # PG CONNECTION
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "host=urban-eco-db dbname=urban_eco user=postgres password=postgres port=5432"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    DATA "geometry FROM \"landSupplyOffers\" USING UNIQUE id USING srid=4326"
+
+    PROJECTION
+      "init=epsg:4326"
+    END
+
+    CLASS
+      STYLE
+        OUTLINEWIDTH 100
+        OUTLINECOLOR 255 0 0
+        WIDTH 100
+      END
+    END
+
+  END
+END

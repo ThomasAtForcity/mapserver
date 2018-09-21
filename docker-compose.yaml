@@ -1,0 +1,24 @@
+version: "3.0"
+services:
+  mapserver:
+    image: camptocamp/mapserver:7.2
+    container_name: mapserver
+    ports: 
+    - 80:80
+    volumes:
+     - ./mapfiles/tutorial/:/etc/mapserver/
+     - ./scripts/env-config.sh:/docker-entrypoint.d/env-config.sh
+    environment:
+      MS_DEBUGLEVEL: 5
+      URB_MS_DB_PW: postgres
+      URB_MS_DB_USER: postgres
+      URB_MS_DB_NAME: urban_eco
+      URB_MS_DB_HOST: urban-eco-db
+  db:
+    container_name: urban-eco-db
+    image: mdillon/postgis
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres

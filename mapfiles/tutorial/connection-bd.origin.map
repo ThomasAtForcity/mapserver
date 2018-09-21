@@ -1,0 +1,47 @@
+MAP
+	NAME "WMS Server"
+	CONFIG "MS_ERRORFILE" "/ms4w/tmp/ms_error3.txt"
+	DEBUG 5
+
+	WEB
+		METADATA
+      "wms_title" "WMS Server"
+      "wms_srs" "epsg:4326"
+      "wms_enable_request" "*"
+      "wms_onlineresource" ""
+    END
+  END
+
+  PROJECTION
+    "init=epsg:4326"
+ 	END
+
+	OUTPUTFORMAT
+    NAME "png"
+    DRIVER AGG/PNG
+    MIMETYPE "image/png"
+    IMAGEMODE RGBA
+    EXTENSION "png"
+  END
+
+	LAYER # MODIS raster layer begins here
+    NAME modis
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "host=127.0.0.1 dbname=urban_eco user=postgres password=idefix port=2163"
+    DATA "geometry FROM public.realEstateOffers"
+    TYPE POINT
+
+    PROJECTION
+      "init=epsg:4326"
+    END
+
+		CLASS
+			STYLE
+				COLOR 255 0 0
+				WIDTH 1
+			END
+		END
+  END # MODIS raster layer ends here
+
+END # end of map file

@@ -1,0 +1,16 @@
+MAP
+  IMAGETYPE      PNG
+  STATUS ON
+  EXTENT -180 -90 180 90
+  UNITS DD
+  SIZE           256 256
+  IMAGECOLOR     255 255 255
+	CONFIG "MS_ERRORFILE" "stderr"
+  DEBUG 5
+
+  PROJECTION
+    "init=epsg:4326"
+  END
+
+  INCLUDE 'states-layer.map'
+END
