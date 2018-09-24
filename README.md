@@ -32,3 +32,7 @@ You should see in red yours land supply offers.
 http://localhost/cgi-bin/mapserv?map=/etc/mapserver/mapfile.map&layer=states&mode=map
 
 ENJOY !! xD
+
+## Documentation
+
+![alternative text](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ThomasAtForcity/mapserver/feature/doc/doc/seq-diag.puml)
